@@ -1,1 +1,1 @@
-web: python app.py & python -m rasa_core_sdk.endpoint --actions actions& & wait -n
+web: python -m rasa_core_sdk.endpoint --actions actions & python app.py & wait -n
