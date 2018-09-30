@@ -1,4 +1,4 @@
-sklearn_crfsuite
+sklearn_crfsuite	
 rasa_nlu
 rasa_core
 spacy
