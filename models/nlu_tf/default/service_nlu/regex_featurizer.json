@@ -1,0 +1,42 @@
+[
+    {
+        "name": "bye",
+        "pattern": "bye[^\\s]*"
+    },
+    {
+        "name": "email",
+        "pattern": "[\\w\\.-]+@[\\w\\.-]+"
+    },
+    {
+        "name": "good-bye",
+        "pattern": "good-bye[^\\s]*"
+    },
+    {
+        "name": "goodbye",
+        "pattern": "goodbye[^\\s]*"
+    },
+    {
+        "name": "greet",
+        "pattern": "hey[^\\s]*"
+    },
+    {
+        "name": "modelnumber",
+        "pattern": "[a-zA-Z]{1,4}[0-9]{1,4}[a-zA-Z]{3,6}"
+    },
+    {
+        "name": "pincode",
+        "pattern": "[0-9]{5}"
+    },
+    {
+        "name": "serialnumber",
+        "pattern": "[a-zA-Z]{3,5}[0-9]{3,5}"
+    },
+    {
+        "name": "trackid",
+        "pattern": "[a-zA-Z]{3,5}[0-9]{3,5}"
+    },
+    {
+        "name": "appliance",
+        "pattern": "(?i)(\\bfridge\\b|\\brefrigerator\\b|\\bdishwasher\\b|\\bair\\ conditioner\\b|\\bac\\b|\\bmicrowave\\b|\\bfreezer\\b|\\bwall\\ oven\\b|\\bwasher\\b|\\bdryer\\b)"
+    }
+]

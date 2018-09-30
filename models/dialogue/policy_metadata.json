@@ -1,0 +1,63 @@
+{
+  "action_fingerprints": {
+    "action_listen": {
+      "slots": [
+        "date",
+        "timeslots",
+        "issue",
+        "serialnumber",
+        "address",
+        "modelnumber",
+        "name",
+        "pincode",
+        "trackid",
+        "email",
+        "appliance"
+      ]
+    },
+    "utter_greet": {
+      "slots": []
+    },
+    "action_restart": {
+      "slots": []
+    },
+    "action_get_complaint_detail": {
+      "slots": [
+        "date",
+        "issue",
+        "serialnumber",
+        "address",
+        "timeslots",
+        "modelnumber",
+        "name",
+        "pincode",
+        "trackid",
+        "confirmcomplain",
+        "requested_slot",
+        "email",
+        "appliance"
+      ]
+    },
+    "action_query_detail": {
+      "slots": [
+        "trackid"
+      ]
+    },
+    "action_cancel_complain": {
+      "slots": [
+        "trackid"
+      ]
+    }
+  },
+  "rasa_core": "0.11.8",
+  "python": "3.6.2",
+  "max_histories": [
+    4,
+    5
+  ],
+  "ensemble_name": "rasa_core.policies.ensemble.SimplePolicyEnsemble",
+  "policy_names": [
+    "rasa_core.policies.memoization.MemoizationPolicy",
+    "rasa_core.policies.keras_policy.KerasPolicy"
+  ]
+}
