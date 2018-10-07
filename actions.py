@@ -285,7 +285,7 @@ class ActionGetComplaintDetail(FormAction):
         trackidfinal = "TR" + trackidnum
         print(trackidnum, trackidfinal)
 
-        day_dict = {'monday' : 0, 'tuesday' : 1, 'wednesday' : 2, 'thursday' : 3 , 'friday' :  4, 'saturday' : 5, 'sunday' : 6}
+        day_dict = {'sunday' : 0, 'monday' : 1, 'tuesday' : 2, 'wednesday' : 3, 'thursday' : 4 , 'friday' :  5, 'saturday' : 6}
         technician_dict = {'scott' : 0, 'larry' : 1, 'tim' : 2}
 
         
@@ -402,7 +402,7 @@ def generate_timeslots(tracker, pin_code, skip_day = None, appliance = None):
     time_taken_for_diff_appliance = {'refrigerator' : 3, 'fridge' : 3, 'freezer' : 1, 'dishwasher' : 2, 'wall oven' : 1, 'microwave' : 2,
                              'washer' : 2, 'dryer' : 1, 'air conditioner' : 3, 'ac' : 3, 'a.c.' : 3, 'a.c' : 3}
 
-    day_dict = {0 : 'monday', 1 : 'tuesday', 2 : 'wednesday', 3 : 'thursday', 4 : 'friday', 5 : 'saturday', 6 : 'sunday'}
+    day_dict = {0 : 'sunday', 1 : 'monday', 2 : 'tuesday', 3 : 'wednesday', 4 : 'thursday', 5 : 'friday', 6 : 'saturday'}
     technician_dict = {0 : 'scott', 1 : 'larry', 2 : 'tim'}
 
     with open('technician.json') as json_file:
@@ -421,7 +421,7 @@ def generate_timeslots(tracker, pin_code, skip_day = None, appliance = None):
             dy = (dy + 1)%7
             continue
         for i in range(len(technicians)):
-            print(i, dy)
+            print(technician_dict[i], day_dict[dy])
             if technicians[i]['day'][dy] == 0:
                 days_choice.append(dy)                                      ## Storing day information
                 technician_choice.append(i)                                 ## Storing technician information
@@ -507,8 +507,10 @@ class GetGeoLocationAddress(Action):
             g = geocoder.ip('me')
             lat, lng = g.latlng
             
+            print(lat, lng)
             r = requests.get('https://nominatim.openstreetmap.org/reverse.php?format=json&lat=%f&lon=%f&zoom=18&addressdetails=1'%(lat,lng)).json()
-            
+            print(r)
+
             address = ""
 
             for k, v in r['address'].items():
@@ -536,8 +538,9 @@ class SetGeoLocationAddress(Action):
     def run(self, dispatcher, tracker, domain):
         ### see intent
         print(tracker.latest_message)
-        confirm = tracker.latest_message.intent["name"]
-        if confirm:
+        confirm = tracker.latest_message['intent']['name']
+        
+        if confirm == 'affirm':
             return []
         else:
             dispatcher.utter_message('Failed to get address !!! Please enter manually ...')
@@ -727,7 +730,7 @@ class ComplainModifyGetTime(Action):
             if any(df.loc[:, 'TrackID'] == track_id.upper()):
                 idx = df.index[df.loc[:, 'TrackID'] == track_id.upper()].tolist()[0]
 
-                day_dict = {'monday' : 0, 'tuesday' : 1, 'wednesday' : 2, 'thursday' : 3 , 'friday' :  4, 'saturday' : 5, 'sunday' : 6}
+                day_dict = {'sunday' : 0, 'monday' : 1, 'tuesday' : 2, 'wednesday' : 3, 'thursday' : 4 , 'friday' :  5, 'saturday' : 6}
                 technician_dict = {'scott' : 0, 'larry' : 1, 'tim' : 2}
 
                 pincode, old_technician, old_day, appliance = df.loc[idx, 'Pincode'], df.loc[idx, 'Technician'], df.loc[idx, 'Date'], df.loc[idx, 'Appliance']
@@ -748,6 +751,9 @@ class ComplainModifyGetTime(Action):
 
                 print('Set or Unset ::', data[pincode][technician_dict[old_technician]]['day'][day_dict[old_day]])
                 data[pincode][technician_dict[old_technician]]['day'][day_dict[old_day]] = 0
+
+                with open('technician.json', 'w') as outfile:
+                    json.dump(data, outfile, indent = 2)
 
                 return [SlotSet("time1", time1), SlotSet("time2", time2), SlotSet("time3", time3)]
 
@@ -775,7 +781,7 @@ class ComplainModifySetTime(Action):
                 idx = df.index[df.loc[:, 'TrackID'] == track_id.upper()].tolist()[0]
                 pin_code = df.loc[idx, 'Pincode']
                 
-                day_dict = {'monday' : 0, 'tuesday' : 1, 'wednesday' : 2, 'thursday' : 3 , 'friday' :  4, 'saturday' : 5, 'sunday' : 6}
+                day_dict = {'sunday' : 0, 'monday' : 1, 'tuesday' : 2, 'wednesday' : 3, 'thursday' : 4 , 'friday' :  5, 'saturday' : 6}
                 technician_dict = {'scott' : 0, 'larry' : 1, 'tim' : 2}
 
                 time = tracker.get_slot('time')

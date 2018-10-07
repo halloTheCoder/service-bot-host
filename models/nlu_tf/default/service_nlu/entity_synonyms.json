@@ -1,12 +1,4 @@
 {
   "ac": "air conditioner",
-  "fridge": "refrigerator",
-  "tr50010": "tr56733",
-  "monday": "tuesday",
-  "wednesday": "tuesday",
-  "thursday": "tuesday",
-  "friday": "tuesday",
-  "saturday": "tuesday",
-  "sunday": "tuesday",
-  "tuesday": "wednesday"
+  "fridge": "refrigerator"
 }
