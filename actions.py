@@ -324,14 +324,20 @@ class ActionGetComplaintDetail(FormAction):
                 data = json.load(json_file)
 
             if(date == day1 and time_slot == time_slot1):
+                print(day1, time_slot1)
+
                 technician_slot = technician1
                 data[pin_code][technician_dict[technician1]]['day'][day_dict[day1]] = 1
 
             if(date == day2 and time_slot == time_slot2):
+                print(day2, time_slot2)
+
                 technician_slot = technician2
                 data[pin_code][technician_dict[technician2]]['day'][day_dict[day2]] = 1
 
             if(date == day3 and time_slot == time_slot3):
+                print(day3, time_slot3)
+
                 technician_slot = technician3
                 data[pin_code][technician_dict[technician3]]['day'][day_dict[day3]] = 1
 
@@ -486,9 +492,21 @@ class SetTimeSlot(Action):
         # pin_code = tracker.get_slot("pincode")
 
         time = tracker.get_slot('time')
+        
         if time is not None:
+            day_dict = {'sunday' : 0, 'monday' : 1, 'tuesday' : 2, 'wednesday' : 3, 'thursday' : 4 , 'friday' :  5, 'saturday' : 6}
+            technician_dict = {'scott' : 0, 'larry' : 1, 'tim' : 2}
+            
             technician, day, time_slot = time.split('\t')
-            dispatcher.utter_message("Your selected timeslot :: %s and %s has been selected" % (day, time_slot))
+            dispatcher.utter_message("Your selected timeslot :: %s\t%s :: %s has been selected" % (technician, day, time_slot))
+                    
+            with open('technician.json') as json_file:
+                data = json.load(json_file)
+
+            data[tracker.get_slot('pincode')][technician_dict[technician]]['day'][day_dict[day]] = 1
+
+            with open('technician.json', 'w') as outfile:
+                json.dump(data, outfile, indent = 2)
 
             return [SlotSet("technician", technician), SlotSet("date", day), SlotSet("timeslots", time_slot), SlotSet("time1", None), SlotSet("time2", None), SlotSet("time3", None)]
 

@@ -17,9 +17,17 @@ def dialogue_initialization():
 	return agent
 	
 def run_service_bot(text, agent, serve_forever = True):
-	response = agent.handle_text(text)
-	print(response)
-	response = response[0]['text']
+	responses = agent.handle_text(text)
+	print(responses)
+
+	ans = ""
+
+	for i in range(len(responses)):
+		if 'recipient_id' in responses[i]:
+			ans += responses[i]['text']
+			if not i == (len(responses) - 1):
+				ans += '\n'
+
 	# rasa_core.run.serve_application(agent ,channel = 'cmdline')
 		
-	return response
+	return ans

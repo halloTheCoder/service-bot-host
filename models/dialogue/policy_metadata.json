@@ -2,41 +2,74 @@
   "action_fingerprints": {
     "action_listen": {
       "slots": [
+        "email",
         "appliance",
-        "issue",
-        "name",
-        "timeslots",
         "phonenumber",
-        "serialnumber",
-        "trackid",
-        "address",
-        "date",
         "modelnumber",
+        "timeslots",
+        "date",
+        "trackid",
+        "issue",
+        "address",
         "pincode",
-        "email"
+        "serialnumber",
+        "name"
       ]
+    },
+    "action_complain_modify_get_time": {
+      "slots": [
+        "time3",
+        "time2",
+        "time1"
+      ]
+    },
+    "action_complain_modify_set_time": {
+      "slots": [
+        "time3",
+        "time2",
+        "time1",
+        "time"
+      ]
+    },
+    "action_restart": {
+      "slots": []
     },
     "action_get_complaint_detail": {
       "slots": [
+        "email",
         "appliance",
-        "issue",
-        "name",
-        "time",
-        "timeslots",
         "phonenumber",
-        "serialnumber",
-        "time1",
-        "trackid",
-        "address",
-        "confirmcomplain",
-        "date",
-        "requested_slot",
-        "time3",
-        "technician",
         "modelnumber",
-        "pincode",
+        "timeslots",
+        "date",
+        "trackid",
+        "time1",
+        "issue",
+        "address",
+        "time3",
         "time2",
-        "email"
+        "time",
+        "pincode",
+        "serialnumber",
+        "requested_slot",
+        "technician",
+        "name",
+        "confirmcomplain"
+      ]
+    },
+    "action_get_timeslots": {
+      "slots": [
+        "time3",
+        "time2",
+        "time1"
+      ]
+    },
+    "action_set_timeslots": {
+      "slots": [
+        "time3",
+        "time2",
+        "time1",
+        "time"
       ]
     },
     "action_get_geo_location": {
@@ -51,22 +84,26 @@
         "pincode"
       ]
     },
-    "action_get_timeslots": {
+    "action_complain_modify_get_timeslots": {
       "slots": [
-        "time2",
         "time3",
+        "time2",
         "time1"
       ]
     },
-    "action_set_timeslots": {
+    "action_complain_modify_set_timeslots": {
       "slots": [
-        "time2",
-        "time",
         "time3",
+        "time2",
         "time1"
       ]
     },
-    "action_restart": {
+    "action_query_detail": {
+      "slots": [
+        "trackid"
+      ]
+    },
+    "utter_greet": {
       "slots": []
     },
     "action_complain_modify_check_track_id": {
@@ -74,50 +111,13 @@
         "trackid"
       ]
     },
-    "action_complain_modify_get_timeslots": {
-      "slots": [
-        "time2",
-        "time3",
-        "time1"
-      ]
-    },
-    "action_complain_modify_set_timeslots": {
-      "slots": [
-        "time2",
-        "time3",
-        "time1"
-      ]
-    },
-    "utter_greet": {
-      "slots": []
-    },
-    "action_query_detail": {
+    "action_cancel_complain": {
       "slots": [
         "trackid"
       ]
     },
     "utter_goodbye": {
       "slots": []
-    },
-    "action_complain_modify_get_time": {
-      "slots": [
-        "time3",
-        "time2",
-        "time1"
-      ]
-    },
-    "action_complain_modify_set_time": {
-      "slots": [
-        "time2",
-        "time",
-        "time3",
-        "time1"
-      ]
-    },
-    "action_cancel_complain": {
-      "slots": [
-        "trackid"
-      ]
     }
   },
   "rasa_core": "0.11.8",

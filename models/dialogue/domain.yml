@@ -238,20 +238,20 @@ templates:
     text: Would you like to go to the homepage ?
   utter_ask_time:
   - buttons:
-    - payload: /log_complain{time:time1}
+    - payload: '/log_complain{"time": "time1"}'
       title: 'Select : time1'
-    - payload: /log_complain{time:time2}
+    - payload: '/log_complain{"time": "time2"}'
       title: 'Select : time2'
-    - payload: /log_complain{time:time3}
+    - payload: '/log_complain{"time": "time3"}'
       title: 'Select : time3'
     text: Select one out of three ...
   utter_ask_timeslot_change:
   - buttons:
-    - payload: /log_complain{timeslots:time1}
+    - payload: '/log_complain{"timeslots": "time1"}'
       title: 'Select : time1'
-    - payload: /log_complain{timeslots:time2}
+    - payload: '/log_complain{"timeslots": "time2"}'
       title: 'Select : time2'
-    - payload: /log_complain{timeslots:time3}
+    - payload: '/log_complain{"timeslots": "time3"}'
       title: 'Select : time3'
     text: Select one out of three ...
   utter_ask_timeslots:
