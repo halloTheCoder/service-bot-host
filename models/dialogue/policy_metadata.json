@@ -4,78 +4,82 @@
       "slots": [
         "email",
         "appliance",
+        "pincode",
+        "address",
+        "serialnumber",
+        "date",
+        "name",
+        "timeslots",
         "phonenumber",
         "modelnumber",
-        "timeslots",
-        "date",
         "trackid",
-        "issue",
-        "address",
-        "pincode",
-        "serialnumber",
-        "name"
+        "issue"
       ]
     },
-    "action_complain_modify_get_time": {
+    "action_query_detail": {
       "slots": [
-        "time3",
-        "time2",
-        "time1"
-      ]
-    },
-    "action_complain_modify_set_time": {
-      "slots": [
-        "time3",
-        "time2",
-        "time1",
-        "time"
+        "trackid"
       ]
     },
     "action_restart": {
       "slots": []
     },
+    "action_complain_modify_get_timeslots": {
+      "slots": [
+        "time1",
+        "time3",
+        "time2"
+      ]
+    },
+    "action_complain_modify_set_timeslots": {
+      "slots": [
+        "time1",
+        "time2",
+        "time3"
+      ]
+    },
+    "action_complain_modify_get_time": {
+      "slots": [
+        "time1",
+        "time2",
+        "time3"
+      ]
+    },
+    "action_complain_modify_set_time": {
+      "slots": [
+        "time",
+        "time1",
+        "time2",
+        "time3"
+      ]
+    },
     "action_get_complaint_detail": {
       "slots": [
+        "confirmcomplain",
         "email",
         "appliance",
-        "phonenumber",
-        "modelnumber",
-        "timeslots",
-        "date",
-        "trackid",
-        "time1",
-        "issue",
-        "address",
-        "time3",
-        "time2",
-        "time",
         "pincode",
+        "address",
+        "time",
         "serialnumber",
-        "requested_slot",
-        "technician",
-        "name",
-        "confirmcomplain"
-      ]
-    },
-    "action_get_timeslots": {
-      "slots": [
-        "time3",
-        "time2",
-        "time1"
-      ]
-    },
-    "action_set_timeslots": {
-      "slots": [
-        "time3",
-        "time2",
+        "date",
         "time1",
-        "time"
+        "requested_slot",
+        "name",
+        "time2",
+        "timeslots",
+        "phonenumber",
+        "technician",
+        "modelnumber",
+        "time3",
+        "trackid",
+        "issue"
       ]
     },
     "action_get_geo_location": {
       "slots": [
-        "address",
-        "pincode"
+        "pincode",
+        "address"
       ]
     },
     "action_set_geo_location": {
@@ -84,32 +88,28 @@
         "pincode"
       ]
     },
-    "action_complain_modify_get_timeslots": {
+    "action_get_timeslots": {
       "slots": [
-        "time3",
+        "time1",
         "time2",
-        "time1"
+        "time3"
       ]
     },
-    "action_complain_modify_set_timeslots": {
+    "action_set_timeslots": {
       "slots": [
-        "time3",
+        "time",
+        "time1",
         "time2",
-        "time1"
+        "time3"
       ]
     },
-    "action_query_detail": {
+    "action_complain_modify_check_track_id": {
       "slots": [
         "trackid"
       ]
     },
     "utter_greet": {
       "slots": []
-    },
-    "action_complain_modify_check_track_id": {
-      "slots": [
-        "trackid"
-      ]
     },
     "action_cancel_complain": {
       "slots": [
