@@ -28,28 +28,28 @@ actions:
 - action_validate_pin_code
 - utter_ask_take_to_homepage
 - utter_ask_updates
-- utter_ask_change_name
-- utter_ask_change_email
-- utter_ask_change_date
-- utter_ask_change_address
-- utter_ask_change_pincode
-- utter_ask_change_timeslots
-- utter_ask_change_time
-- utter_ask_change_phonenumber
+- utter_ask_change_entity
+- utter_cannot_change_timeslots
+- utter_cannot_change_time
+- utter_cannot_change_pincode
 - utter_ask_trackid
+- utter_ask_more_query
 - action_query_detail
 - action_query_time_detail
 - action_query_timeslots_detail
 - utter_ask_cancel_complain_confirm
 - action_cancel_complain
 - utter_provide_servicedetail
+- action_complain_modify_check_track_id
+- utter_wrong_track_id
 - utter_ask_what_to_modify
-- utter_ask_new_time
 - utter_ask_modify_time_confirm
-- utter_ask_new_timeslots
+- action_complain_modify_get_time
+- action_complain_modify_set_time
 - utter_ask_modify_timeslots_confirm
-- action_complain_modify_change_time
-- action_complain_modify_change_timeslots
+- action_complain_modify_get_timeslots
+- utter_ask_timeslot_change
+- action_complain_modify_set_timeslots
 config:
   store_entities_as_slots: true
 entities:
@@ -95,6 +95,10 @@ intents:
     use_entities: true
 - restart:
     use_entities: true
+- ask_updates:
+    use_entities: true
+- ask_notupdates:
+    use_entities: true
 slots:
   address:
     initial_value: null
@@ -135,6 +139,9 @@ slots:
   serialnumber:
     initial_value: null
     type: rasa_core.slots.TextSlot
+  technician:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
   time:
     initial_value: null
     type: rasa_core.slots.UnfeaturizedSlot
@@ -165,27 +172,16 @@ templates:
     - payload: /deny
       title: 'No'
     text: 'Do you really want to delete your complaint with track id : {trackid}'
-  utter_ask_change_address:
-  - text: On it! Please provide your address.
-  utter_ask_change_email:
-  - text: On it! Please provide your email.
-  utter_ask_change_name:
-  - text: On it! Please provide your name.
-  utter_ask_change_phonenumber:
-  - text: On it! Please provide your phonenumber.
-  utter_ask_change_pincode:
-  - text: On it! Please provide your pincode.
-  utter_ask_change_time:
-  - text: On it! Please provide the date.
-  utter_ask_change_timeslots:
-  - text: On it! Please provide the time slots.
+  utter_ask_change_entity:
+  - text: On it! Please provide it's information.
   utter_ask_confirm_address:
   - buttons:
-    - payload: /affirm{confirm_geo_location:True}
+    - payload: /affirm
       title: 'Yes'
-    - payload: /deny{confirm_geo_location:False}
+    - payload: /deny
       title: 'No'
-    text: 'Please confirm your address :: {address} and pincode :: {pincode}'
+    text: Please confirm your address and pincode if geo-location retrieval was successfull
+      ...
   utter_ask_confirmcomplain:
   - buttons:
     - payload: /affirm
@@ -210,16 +206,17 @@ templates:
       title: 'Yes'
     - payload: /deny
       title: 'No'
-    text: 'Do you really want to modify day of your complaint to {date} with track
-      id : {trackid}'
+    text: 'Do you really want to modify day of your complaint with track id : {trackid}'
   utter_ask_modify_timeslots_confirm:
   - buttons:
     - payload: /affirm
       title: 'Yes'
     - payload: /deny
       title: 'No'
-    text: 'Do you really want to modify timeslot of your complaint to {timeslots}
-      with track id : {trackid}'
+    text: 'Do you really want to modify timeslot of your complaint with track id :
+      {trackid}'
+  utter_ask_more_query:
+  - text: What would like to know more ?
   utter_ask_name:
   - text: Could you provide me with your name?
   utter_ask_new_time:
@@ -248,14 +245,32 @@ templates:
     - payload: /log_complain{time:time3}
       title: 'Select : time3'
     text: Select one out of three ...
+  utter_ask_timeslot_change:
+  - buttons:
+    - payload: /log_complain{timeslots:time1}
+      title: 'Select : time1'
+    - payload: /log_complain{timeslots:time2}
+      title: 'Select : time2'
+    - payload: /log_complain{timeslots:time3}
+      title: 'Select : time3'
+    text: Select one out of three ...
   utter_ask_timeslots:
   - text: PLease select a suitable time slot according to your convinence.
   utter_ask_trackid:
   - text: Please provide your tracking ID number.
   utter_ask_updates:
-  - text: What would you like to change?
+  - text: You can only edit your personal information. What would you like to change?
   utter_ask_what_to_modify:
   - text: You can update only day and timeslots. Which would you like to update ???
+  utter_cannot_change_pincode:
+  - text: Oops! Pincode can not be changed here. You need to discard this session
+      and book another complain.
+  utter_cannot_change_time:
+  - text: Oops! Day of service can not be changed here. You need to discard this session
+      and book another complain.
+  utter_cannot_change_timeslots:
+  - text: Oops! Timeslots of service can not be changed here. You need to discard
+      this session and book another complain.
   utter_default:
   - text: I did not understand you.
   utter_goodbye:
@@ -283,5 +298,7 @@ templates:
       {name}, {email} Address: {address}, {pincode} Complain : (appliance_type: {appliance},
       model number: {modelnumber}, serial number : {serialnumber}, issue: {issue})
       Date : {date} Time : {timeslots}.'
+  utter_wrong_track_id:
+  - text: Please enter trackid again ....!!!
   utter_youarewelcome:
   - text: Thank you for using our service. Taking you to our home page.... :)
