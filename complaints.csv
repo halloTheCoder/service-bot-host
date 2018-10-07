@@ -1,3 +1,14 @@
-Appliance	Issue	ModelNumber	SerialNumber	Name	Email	Address	Pincode	Date	TimeSlots	TrackID
-fridge	broken	pyd22kblts	rfaz3347	akash	abc@gmail.com	2025 m street , northwest , washington , dc	20036	wednesday	3-4	TR96147
-fridge	broken	pyd22kblts	rfaz3347	dev	abc@gmail.com	2025 m street , northwest , washington , dc	20036	tuseday	11-12	TR96545
+Appliance	Issue	ModelNumber	SerialNumber	Name	Email	Phone No	Address	Pincode	Technician	Date	TimeSlots	TrackID
+fridge	broken	pyd22kblts	rfaz3347	akash	abc@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	sunday	1 - 4 am	TR96147
+fridge	broken	pyd22kblts	rfaz3347	dev	abc@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	tuesday	11 - 12 am	TR74418
+ac	not working	pyd22kblts	rfaz3347	Ralph White	abc@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	tuesday	11 - 12 am	TR91045
+fridge	broken	pyd22kblts	rfaz3347	ralph white	akash.chandra8d@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	tuesday	11 - 12 pm	TR11389
+fridge	broken	pyd22kblts	rfaz3347	dev	abc@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	tuesday	11 - 12 am	TR22733
+fridge	broken	pyd22kblts	rfaz3347	akash chandra	abc@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	tuesday	11 - 12 pm	TR59636
+refrigerator	broken	pyd22kblts	rfaz3351	dev	akash.chandra8d@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	tuesday	10 - 12 am	TR16353
+refrigerator	not working	cfe28ushss	rfaz3345	dev	akash.chandra8d@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	tuesday	4 - 5 pm	TR71946
+refrigerator	broken	pyd22kblts	rfaz3347	dev	akash.chandra8d@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	sunday	8 - 10 am	TR70320
+refrigerator	not working	pyd22kblts	rfaz3347	ralph white	akash.chandra8d@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	monday	10 - 12 pm	TR42032
+refrigerator	not working	pyd22kblts	rfaz3347	dev	akash.chandra8d@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	tuesday	11 - 12 am	TR41264
+refrigerator	broken	pyd22kblts	rfaz3347	dev	akash.chandra8d@gmail.com	8002331136	2025 m street , northwest , washington , dc	20036	scott	sunday	10 - 12 am	TR53622
+refrigerator	not cooling	pyd22kblts	rfaz3347	emma	akash.chandra8d@gmail.com	8250599363	2025 m street , northwest , washington , dc	20036	scott	tuesday	5 - 8 pm	TR59159

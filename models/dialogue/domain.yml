@@ -17,17 +17,25 @@ actions:
 - utter_ask_confirmcomplain
 - utter_ask_date
 - utter_notconfirmed
-- utter_ask_moreupdates
+- action_get_complaint_detail
+- action_store_details
+- utter_ask_time
+- action_get_timeslots
+- action_set_timeslots
+- action_get_geo_location
+- utter_ask_confirm_address
+- action_set_geo_location
+- action_validate_pin_code
+- utter_ask_take_to_homepage
+- utter_ask_updates
 - utter_ask_change_name
 - utter_ask_change_email
 - utter_ask_change_date
 - utter_ask_change_address
 - utter_ask_change_pincode
 - utter_ask_change_timeslots
-- action_get_complaint_detail
-- action_store_details
-- action_get_timeslots
-- action_set_timeslots
+- utter_ask_change_time
+- utter_ask_change_phonenumber
 - utter_ask_trackid
 - action_query_detail
 - action_query_time_detail
@@ -85,6 +93,8 @@ intents:
     use_entities: true
 - affirm:
     use_entities: true
+- restart:
+    use_entities: true
 slots:
   address:
     initial_value: null
@@ -92,6 +102,9 @@ slots:
   appliance:
     initial_value: null
     type: rasa_core.slots.TextSlot
+  confirm_geo_location:
+    initial_value: null
+    type: rasa_core.slots.BooleanSlot
   confirmcomplain:
     initial_value: null
     type: rasa_core.slots.TextSlot
@@ -108,6 +121,9 @@ slots:
     initial_value: null
     type: rasa_core.slots.TextSlot
   name:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  phonenumber:
     initial_value: null
     type: rasa_core.slots.TextSlot
   pincode:
@@ -143,21 +159,40 @@ templates:
   utter_ask_appliance:
   - text: What is your appliance?
   utter_ask_cancel_complain_confirm:
-  - text: 'Do you really want to delete your complaint with track id : {trackid}'
+  - buttons:
+    - payload: /affirm
+      title: 'Yes'
+    - payload: /deny
+      title: 'No'
+    text: 'Do you really want to delete your complaint with track id : {trackid}'
   utter_ask_change_address:
-  - text: Oh on it! Please provide your address.
-  utter_ask_change_date:
-  - text: Oh on it! Please provide the date.
+  - text: On it! Please provide your address.
   utter_ask_change_email:
-  - text: Oh on it! Please provide your email.
+  - text: On it! Please provide your email.
   utter_ask_change_name:
-  - text: Oh on it! Please provide your name.
+  - text: On it! Please provide your name.
+  utter_ask_change_phonenumber:
+  - text: On it! Please provide your phonenumber.
   utter_ask_change_pincode:
-  - text: Oh on it! Please provide your pincode.
+  - text: On it! Please provide your pincode.
+  utter_ask_change_time:
+  - text: On it! Please provide the date.
   utter_ask_change_timeslots:
-  - text: Oh on it! Please provide the time slots.
+  - text: On it! Please provide the time slots.
+  utter_ask_confirm_address:
+  - buttons:
+    - payload: /affirm{confirm_geo_location:True}
+      title: 'Yes'
+    - payload: /deny{confirm_geo_location:False}
+      title: 'No'
+    text: 'Please confirm your address :: {address} and pincode :: {pincode}'
   utter_ask_confirmcomplain:
-  - text: 'Do you want to confirm the complain? These are your details: Complaint:
+  - buttons:
+    - payload: /affirm
+      title: 'Yes'
+    - payload: /deny
+      title: 'No'
+    text: 'Do you want to confirm the complain? These are your details: Complaint:
       {name} , {email} Address: {address} {pincode} Complain : (appliance_type: {appliance},
       model_number: {modelnumber}, serial_number: {serialnumber}, issue: {issue})
       Date : {date} Time : {timeslots}.'
@@ -170,32 +205,55 @@ templates:
   utter_ask_modelnumber:
   - text: Please provide the model number of the appliance.
   utter_ask_modify_time_confirm:
-  - text: 'Do you really want to modify day of your complaint to {date} with track
+  - buttons:
+    - payload: /affirm
+      title: 'Yes'
+    - payload: /deny
+      title: 'No'
+    text: 'Do you really want to modify day of your complaint to {date} with track
       id : {trackid}'
   utter_ask_modify_timeslots_confirm:
-  - text: 'Do you really want to modify timeslot of your complaint to {timeslots}
+  - buttons:
+    - payload: /affirm
+      title: 'Yes'
+    - payload: /deny
+      title: 'No'
+    text: 'Do you really want to modify timeslot of your complaint to {timeslots}
       with track id : {trackid}'
-  utter_ask_moreupdates:
-  - text: "if you'd like to modify anything else, please tell me what. This is what\
-      \ I currently have: Complaint: {name} , {email} Address: {address} {pincode}\
-      \ Complain : (appliance_type: {appliance}, model_number: {modelnumber}, serial_number:\
-      \ {serialnumber}, issue: {issue}) Date : {date} Time : {timeslots}."
   utter_ask_name:
   - text: Could you provide me with your name?
   utter_ask_new_time:
   - text: What is the new time ??
   utter_ask_new_timeslots:
   - text: What is the new timeslot ??
+  utter_ask_phonenumber:
+  - text: Please provide your phonenumber.
   utter_ask_pincode:
   - text: Please provide me the neccessary details.Your pincode.
   utter_ask_serialnumber:
   - text: Please provide the serial number of the appliance.
+  utter_ask_take_to_homepage:
+  - buttons:
+    - payload: /affirm
+      title: 'Yes'
+    - payload: /deny
+      title: 'No'
+    text: Would you like to go to the homepage ?
   utter_ask_time:
-  - text: buttons
+  - buttons:
+    - payload: /log_complain{time:time1}
+      title: 'Select : time1'
+    - payload: /log_complain{time:time2}
+      title: 'Select : time2'
+    - payload: /log_complain{time:time3}
+      title: 'Select : time3'
+    text: Select one out of three ...
   utter_ask_timeslots:
   - text: PLease select a suitable time slot according to your convinence.
   utter_ask_trackid:
   - text: Please provide your tracking ID number.
+  utter_ask_updates:
+  - text: What would you like to change?
   utter_ask_what_to_modify:
   - text: You can update only day and timeslots. Which would you like to update ???
   utter_default:

@@ -1,14 +1,4 @@
 {
-  "air conditioner": "ac",
-  "refrigerator": "fridge",
-  "": "3-5 PM",
-  "r56766 ": "tr56766",
-  "uesday": "Tuesday",
-  "ember as the": "14 September",
-  "ember as dat": "14 September",
-  "tr5001": "tr56733",
-  "tr50010": "tr56733",
-  "wednesd": "wednesday",
-  "thursda": "thursday",
-  "saturda": "saturday"
+  "ac": "air conditioner",
+  "fridge": "refrigerator"
 }

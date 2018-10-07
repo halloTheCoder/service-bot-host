@@ -2,51 +2,85 @@
   "action_fingerprints": {
     "action_listen": {
       "slots": [
-        "date",
         "timeslots",
+        "phonenumber",
+        "date",
+        "trackid",
         "issue",
         "serialnumber",
-        "address",
-        "modelnumber",
-        "name",
         "pincode",
-        "trackid",
+        "name",
+        "time",
+        "modelnumber",
         "email",
+        "address",
         "appliance"
       ]
-    },
-    "utter_greet": {
-      "slots": []
-    },
-    "action_restart": {
-      "slots": []
     },
     "action_get_complaint_detail": {
       "slots": [
+        "confirmcomplain",
+        "timeslots",
+        "phonenumber",
         "date",
+        "trackid",
         "issue",
         "serialnumber",
-        "address",
-        "timeslots",
-        "modelnumber",
-        "name",
-        "pincode",
-        "trackid",
-        "confirmcomplain",
         "requested_slot",
+        "pincode",
+        "name",
+        "time",
+        "modelnumber",
         "email",
+        "address",
         "appliance"
       ]
+    },
+    "action_get_geo_location": {
+      "slots": [
+        "pincode",
+        "address"
+      ]
+    },
+    "action_set_geo_location": {
+      "slots": [
+        "pincode",
+        "address"
+      ]
+    },
+    "action_get_timeslots": {
+      "slots": [
+        "time1",
+        "time3",
+        "time2"
+      ]
+    },
+    "action_set_timeslots": {
+      "slots": [
+        "time1",
+        "time3",
+        "time",
+        "time2"
+      ]
+    },
+    "action_restart": {
+      "slots": []
     },
     "action_query_detail": {
       "slots": [
         "trackid"
       ]
     },
+    "utter_greet": {
+      "slots": []
+    },
     "action_cancel_complain": {
       "slots": [
         "trackid"
       ]
+    },
+    "utter_goodbye": {
+      "slots": []
     }
   },
   "rasa_core": "0.11.8",
@@ -58,6 +92,6 @@
   "ensemble_name": "rasa_core.policies.ensemble.SimplePolicyEnsemble",
   "policy_names": [
     "rasa_core.policies.memoization.MemoizationPolicy",
-    "rasa_core.policies.keras_policy.KerasPolicy"
+    "policy.BotPolicy"
   ]
 }
